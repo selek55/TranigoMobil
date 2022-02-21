@@ -9,7 +9,7 @@ class CityRegionService {
   static const headers = {'apiKey': '', 'Content-Type': 'application/json'};
 
   Future<APIResponse<List<CityRegionList>>> getCityRegionList() {
-    return http.get(api, headers: headers).then((data) {
+    return http.get(Uri.parse(api), headers: headers).then((data) {
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
         final students = <CityRegionList>[];

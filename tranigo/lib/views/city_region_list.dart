@@ -4,15 +4,17 @@ import 'package:tranigo/services/city_region_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-class CityRegionListe extends StatefulWidget {
+class CityRegionListeWidget extends StatefulWidget {
+  const CityRegionListeWidget({Key? key}) : super(key: key);
+
   @override
-  _CityRegionListeState createState() => _CityRegionListeState();
+  CityRegionListeWidgetState createState() => CityRegionListeWidgetState();
 }
 
-class _CityRegionListeState extends State<CityRegionListe> {
+class CityRegionListeWidgetState extends State<CityRegionListeWidget> {
   CityRegionService get service => GetIt.I<CityRegionService>();
   //List<NoteForListing> notes = [];
-  APIResponse<List<CityRegionList>>? _apiResponse;
+  late APIResponse<List<CityRegionList>> _apiResponse;
   bool _isLooding = false;
 
   @override
@@ -36,60 +38,60 @@ class _CityRegionListeState extends State<CityRegionListe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Öğrenci Listesi')),
+        appBar: AppBar(title: const Text('Öğrenci Listesi')),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
         body: Builder(
           builder: (_) {
             if (_isLooding) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
 
-            if (_apiResponse?.error ?? false) {
-              return Center(child: Text(_apiResponse!.errorMessage));
+            if (_apiResponse.error) {
+              return Center(child: Text(_apiResponse.errorMessage));
             }
 
             return ListView.separated(
-              separatorBuilder: (_, __) =>
-                  Divider(height: 1, color: Colors.green),
-              itemBuilder: (_, index) {
-                return Dismissible(
-                  key: ValueKey(_apiResponse.data[index].id),
-                  direction: DismissDirection.startToEnd,
-                  onDismissed: (direction) {},
-                  background: Container(
-                    color: Colors.red,
-                    padding: EdgeInsets.only(left: 16),
-                    child: Align(
-                      child: Icon(Icons.delete, color: Colors.white),
-                      alignment: Alignment.centerLeft,
+                separatorBuilder: (_, __) =>
+                    const Divider(height: 1, color: Colors.green),
+                itemBuilder: (_, index) {
+                  return Dismissible(
+                    key: ValueKey(_apiResponse.data![index].id),
+                    direction: DismissDirection.startToEnd,
+                    onDismissed: (direction) {},
+                    background: Container(
+                      color: Colors.red,
+                      padding: const EdgeInsets.only(left: 16),
+                      child: const Align(
+                        child: Icon(Icons.delete, color: Colors.white),
+                        alignment: Alignment.centerLeft,
+                      ),
                     ),
-                  ),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.supervised_user_circle,
-                      size: 44.0,
-                      color: Colors.red[400],
-                    ),
-                    title: Text(
-                      _apiResponse.data[index].name,
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
-                    subtitle: Text(_apiResponse.data[index].name),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(
-                            Icons.edit,
-                            size: 24.0,
-                            color: Colors.grey[400],
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.supervised_user_circle,
+                        size: 44.0,
+                        color: Colors.red[400],
+                      ),
+                      title: Text(
+                        _apiResponse.data![index].name,
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
+                      subtitle: Text(_apiResponse.data![index].name),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.edit,
+                              size: 24.0,
+                              color: Colors.grey[400],
+                            ),
+                            onPressed: () {},
                           ),
-                          onPressed: () {},
-                        ),
-                        /* IconButton(
+                          /* IconButton(
                 icon: Icon(
                   Icons.content_paste,
                   size: 24.0,
@@ -100,13 +102,13 @@ class _CityRegionListeState extends State<CityRegionListe> {
                 },
               ),
               */
-                      ],
+                        ],
+                      ),
+                      onTap: () {},
                     ),
-                    onTap: () {},
-                  ),
-                );
-              },
-            );
+                  );
+                },
+                itemCount: _apiResponse.data!.length);
           },
         ));
   }
