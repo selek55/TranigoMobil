@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:tranigo/views/city_region_list.dart';
+import 'services/city_region_service.dart';
+
+void setupLocator() {
+  GetIt.I.registerLazySingleton(() => CityRegionService());
+}
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
