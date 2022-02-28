@@ -17,11 +17,21 @@ class CityRegionService {
         for (var item in jsonData) {
           students.add(CityRegionList.fromJson(item));
         }
+
         return APIResponse<List<CityRegionList>>(data: students);
       }
       return APIResponse<List<CityRegionList>>(
           error: true, errorMessage: 'hata olustu.');
-    }).catchError((_) => APIResponse<List<CityRegionList>>(
-        error: true, errorMessage: 'hata olustu.'));
+    }).catchError((e) => APIResponse<List<CityRegionList>>(
+        error: true, errorMessage: 'hata olustu.' + e.toString()));
   }
+
+  //  static List<CityRegionList> parseAgents(String responseBody) {
+  //   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  //   return parsed.map<CityRegionList>((json) => CityRegionList.fromJson(json)).toList();
+  // }
+}
+
+class ServiceBase {
+  static const baseUrl = "";
 }

@@ -1,28 +1,48 @@
-class CityRegionList{
-  int id;
-  String name;
-  bool isAirport;
-  int cityId;
-  String cityName;
-  int mesafe;
-  int sirala;
-  String link;
-  bool fiyatVarMi;
+class CityRegionList {
+  int? id;
+  String? name;
+  bool? isAirport;
+  int? cityId;
+  String? cityName;
+  double? mesafe;
+  int? sirala;
+  String? link;
+  bool? fiyatVarMi;
 
-  CityRegionList({required this.id, required this.name,required this.isAirport,required this.cityId,required this.cityName,required this.mesafe,required this.sirala, required this.link, required this.fiyatVarMi});
+  CityRegionList(
+      {this.id,
+      this.name,
+      this.isAirport,
+      this.cityId,
+      this.cityName,
+      this.mesafe,
+      this.sirala,
+      this.link,
+      this.fiyatVarMi});
 
-  factory CityRegionList.fromJson(Map<String,dynamic> item){
-    return CityRegionList(
-              id: item['id'],
-              name: item['Name'],
-              isAirport: item['isAirport'],
-              cityId: item['cityId'],
-              cityName: item['cityName'],
-              mesafe: item['mesafe'],
-              sirala: item['sirala'],
-              link: item['link'],
-              fiyatVarMi: item['fiyatVarMi']
-          );
+  CityRegionList.fromJson(Map<String, dynamic> json) {
+    id = json['Id'];
+    name = json['Name'];
+    isAirport = json['IsAirport'];
+    cityId = json['CityId'];
+    cityName = json['CityName'];
+    mesafe = json['Mesafe'];
+    sirala = json['Sirala'];
+    link = json['Link'];
+    fiyatVarMi = json['FiyatVarMi'];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['Name'] = name;
+    data['IsAirport'] = isAirport;
+    data['CityId'] = cityId;
+    data['CityName'] = cityName;
+    data['Mesafe'] = mesafe;
+    data['Sirala'] = sirala;
+    data['Link'] = link;
+    data['FiyatVarMi'] = fiyatVarMi;
+    return data;
+  }
 }
