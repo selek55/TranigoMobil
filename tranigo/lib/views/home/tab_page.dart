@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../city_region_list.dart';
+import 'package:tranigo/views/city_region_list.dart';
+import 'package:tranigo/views/search/search.dart';
 
 class HomeTabWidget extends StatefulWidget {
   const HomeTabWidget({Key? key}) : super(key: key);
@@ -18,8 +18,8 @@ class HomeTabWidgetState extends State<HomeTabWidget> {
         appBar: AppBar(
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const TabBar(
+            children: const [
+              TabBar(
                 tabs: [
                   Tab(icon: Icon(Icons.directions_car)),
                   Tab(icon: Icon(Icons.hiking))
@@ -29,10 +29,7 @@ class HomeTabWidgetState extends State<HomeTabWidget> {
           ),
         ),
         body: const TabBarView(
-          children: [
-            CityRegionListeWidget(),
-            Icon(Icons.hiking),
-          ],
+          children: [NetworkTypeAheadPage(), CityRegionListeWidget()],
         ),
       ),
     );
