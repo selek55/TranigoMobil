@@ -4,10 +4,9 @@ import 'package:tranigo/models/pick_up_location.dart';
 
 class PickUpLocationApi {
   static Future<List<PickUpLocation>> getPickUpLocations(String query) async {
-    final url = Uri.parse(
-        'https://test.betaindustrial.com.tr/en/booking/search?search=' +
-            query.toLowerCase() +
-            '&lang=en');
+    final url = Uri.parse('https://www.tranigo.com/en/booking/search?search=' +
+        query.toLowerCase() +
+        '&lang=en');
 
     final response = await http.get(url);
 
@@ -20,10 +19,9 @@ class PickUpLocationApi {
   }
 
   static Future<List<Children>> getPickUpLocationChildren(String query) async {
-    final url = Uri.parse(
-        'https://test.betaindustrial.com.tr/en/booking/search?search=' +
-            query.toLowerCase() +
-            '&lang=en');
+    final url = Uri.parse('https://www.tranigo.com/en/booking/search?search=' +
+        query.toLowerCase() +
+        '&lang=en');
 
     final response = await http.get(url);
 

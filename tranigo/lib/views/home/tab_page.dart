@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tranigo/views/city_region_list.dart';
-import 'package:tranigo/views/search/search.dart';
+import 'package:tranigo/views/search/transfer_search.dart';
 
 class HomeTabWidget extends StatefulWidget {
   const HomeTabWidget({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class HomeTabWidgetState extends State<HomeTabWidget> {
           ),
         ),
         body: const TabBarView(
-          children: [NetworkTypeAheadPage(), CityRegionListeWidget()],
+          children: [TransferSearchWidget(), CityRegionListeWidget()],
         ),
       ),
     );
